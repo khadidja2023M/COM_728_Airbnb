@@ -13,7 +13,7 @@ def started(msg=""):
     print(f"Operation started: {msg}...\n")
 
     
-#create a starting function that will indicate the start of the programme    
+#create a completed function that will indicate the end of the programme
 def completed():
     print("Operation completed.")
     dashes=('#')*75
