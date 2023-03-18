@@ -68,8 +68,8 @@ def display_popular_amenities(data):
     
 #this function display the average price of stay in each location.      
 def display_average_price_location(data):
-    average_stay_location=data.groupby(['host_location'])['price'].mean()
-    print(f'The average stay in each location:\n{average_stay_location:,.2f}')
+    
+    print(f'The average stay in each location:\n{average_stay_location}')#:,.2f
     
 #this function display the average review scores rating for each location.      
 def display_average_review_location(data):

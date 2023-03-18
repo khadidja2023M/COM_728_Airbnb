@@ -107,10 +107,15 @@ def listing_by_location(data):
     tui.display_listing_by_location(Location)            
     tui.completed()
     
+def average_price_location(data):
+    tui.started('display average price by location:')
+    
+    average_stay_location=data.groupby(['host_location'])['price'].mean()
+    
+    
+    print(f'The average stay in each location:\n{average_stay_location}')
             
-            
-            
-           
+    tui.completed()      
 
              
                  
