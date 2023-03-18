@@ -61,20 +61,3 @@ def display_listing_by_property_type(property_type):
 def display_listing_by_location(Location):
     print(f"review_scores_cleanliness:{Location[0]}\nreview_scores_communication:{Location[1]}\nreview_scores_checkin:{Location[2]}\nreview_scores_rating:{Location[3]}") 
                     
-#this function display amenities in a list   
-def display_popular_amenities(data):
-    popular_amenities=data['amenities'].mode()
-    print(f'the most popular amenities are:{popular_amenities.values}')
-    
-#this function display the average price of stay in each location.      
-def display_average_price_location(data):
-    
-    print(f'The average stay in each location:\n{average_stay_location}')#:,.2f
-    
-#this function display the average review scores rating for each location.      
-def display_average_review_location(data):
-    average_review_location=data.groupby(['host_location'])['review_scores_location'].mean()
-    print(f'The average review rate score for each location is:\n{average_review_location}')           
-def display_average_price_host_is_superhost(data):
-    average_price=data.groupby(['host_is_superhost'])['price'].mean()
-    print(f"the average price of host is not super host and host is superhost is:{average_price.values}")

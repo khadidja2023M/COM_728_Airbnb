@@ -107,17 +107,33 @@ def listing_by_location(data):
     tui.display_listing_by_location(Location)            
     tui.completed()
     
+
+#this function display amenities in a list   
+def popular_amenities(data):
+    tui.started('display the  most popular amenities:')
+    popular_amenities=data['amenities'].mode()
+    print(f'the most popular amenities are:{popular_amenities.values}')
+    tui.completed()
+    
+#this function display the average price of stay in each location.      
 def average_price_location(data):
     tui.started('display average price by location:')
-    
     average_stay_location=data.groupby(['host_location'])['price'].mean()
-    
-    
-    print(f'The average stay in each location:\n{average_stay_location}')
-            
+    print(f'The average stay in each location:\n{average_stay_location}')         
     tui.completed()      
-
-             
+    
+#this function display the average review scores rating for each location.      
+def average_review_location(data):
+    tui.started('display the average review scores rating:')
+    average_review_location=data.groupby(['host_location'])['review_scores_location'].mean()
+    print(f'The average review rate score for each location is:\n{average_review_location}')
+    tui.completed()
+    
+def average_price_host_is_superhost(data):
+    tui.started('display average price for host is superhost:')
+    average_price=data.groupby(['host_is_superhost'])['price'].mean()
+    print(f"the average price of host is  not super host and host is super_host is:{average_price.values}")
+    tui.completed()
                  
 
     
