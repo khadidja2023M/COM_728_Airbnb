@@ -46,13 +46,18 @@ def menu():
 def error():  
     print("Invalid Selection!")
 
-#this function display the results of the function listing by id in the process module as a dictionnary.       
+#this function display the results of the function listing by id in the process module as a dictionnary.
 def display_listing_by_id(ID):
+
     print(f"host_name:{ID['host_name']}\ndescription:{ID['description']}\nhost_location:{ID['location']}\nhost_since:{ID['host_since']}")
     
 #this function display the results of the function listing for specified location in the process module as a dictionnary.       
 def display_listing_for_specified_location(location):
-    print(f"host name:{location[0]}\nproperty type:{location[1]}\nprice:{location[2]}\nminimum nights:{location[3]}\nmaximum nights:{location[4]}") 
+
+    print(f"host name:{location[0]}\nproperty type:{location[1]}\nprice:{location[2]}\nminimum nights:{location[3]}\nmaximum nights:{location[4]}")
+
+
+
     
 #this function display the results of the function listing by property type in the process module as a dictionnary.   
 def display_listing_by_property_type(property_type):
