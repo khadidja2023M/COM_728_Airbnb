@@ -28,7 +28,7 @@ def main_menu():
     
     {"[third]":<6}:visualise data.\n
     
-    {"[fourth]":<6}:Exit the programme.
+    {"[exit]":<6}:Exit the programme.
     """)
           
       
