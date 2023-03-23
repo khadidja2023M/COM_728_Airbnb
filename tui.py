@@ -19,19 +19,11 @@ def completed():
     print(dashes)
     
 def main_menu():
-    
-    print(f"""select which menu whoud you like:
-    
-    {"[first]":<6}:Retrieve data.\n 
-    
+    print(f"""select which menu would you like:
+    {"[first]":<6}:Retrieve data.\n   
     {"[second]":<6}:Analyse data.\n
-    
     {"[third]":<6}:visualise data.\n
-    
-    {"[exit]":<6}:Exit the programme.
-    """)
-          
-      
+    {"[exit]":<6}:Exit the programme.""")
     selection=input('your selection: ')
     return selection.strip().lower() 
                   
