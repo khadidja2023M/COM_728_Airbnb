@@ -42,8 +42,11 @@ def display_listing_for_specified_location(location):
     
 #this function display the results of the function listing by property type in the retrieve module as a dictionnary.   
 def display_listing_by_property_type(property_type):
-    print(f"room type:{property_type[0]}\naccomodates:{property_type[1]}\nbathrooms:{property_type[2]}\nbedroom:{property_type[3]}\nbeds:{property_type[4]}") 
-    
+    print(f"room type:{property_type[0]}\naccommodates:{property_type[1]}\nbathrooms:{property_type[2]}\nbedroom:{property_type[3]}\nbeds:{property_type[4]}")
+
+
+
+
 #this function display the results of the function listing by location in the retrieve module as a dictionnary.            
 def display_listing_by_location(Location):
     print(f"review scores cleanliness:{Location[0]}\nreview scores communication:{Location[1]}\nreview scores checkin:{Location[2]}\nreview scores rating:{Location[3]}") 
