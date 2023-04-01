@@ -34,7 +34,7 @@ def error():
 
 #this function display the results of the function listing by id in the retrieve module as a dictionnary.       
 def display_listing_by_id(ID):
-    print(f"host name:{ID['host_name']}\ndescription:{ID['description']}\nhost location:{ID['location']}\nhost   since:{ID['host_since']}")
+    print(f"host name:{ID[0]}\ndescription:{ID[1]}\nhost location:{ID[2]}\nhost since:{ID[3]}")
     
 #this function display the results of the function listing for specified location in the retrieve module as a dictionnary.       
 def display_listing_for_specified_location(location):
