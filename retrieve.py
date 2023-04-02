@@ -14,12 +14,12 @@ import csv
 def load_data_csv(file_path):
     #call started function from tui module to indicate that the operation is started. 
     tui.started("Reading data from file path using csv module.")
-    #Use tray and except to handle the error.
-    
-    with open(file_path, encoding='utf-8')as csv_file:
+    #empty list to store data.
+    data=[]
+    with open(file_path, encoding='utf-8') as csv_file:
         csv_reader = csv.reader(csv_file)
-        next(csv_reader)#skip the headings
-        data = [row for row in csv_reader]#list comprehension
+        next(csv_reader)#skip the headings.
+        data = [row for row in csv_reader]#list comprehension to append the list data with each row.
         return data
 
         
@@ -47,12 +47,14 @@ def retrieve_menu():
                  
 ##This function ask the user to enter the id to get listings in a dictionnary based on the id entered by the user and call display_listing_by_id function from tui module to display the results in a dictionnary.                                  
 def listing_by_id(data):
-    
+    #call started function from the tui module.
     tui.started('listing host name, description, host location and host since by ID')
+    #Create an empty list to store the results.
     ID=[]
+    #Ask the user to enter the id .
     input_id=input('enter your ID:')
-    
     for row in data:
+        #If the input_id equal to the id  append the list ID with host name, description, location and host since.
         if row[0] == input_id:
             host_name = row[3]
             description = row[2]
@@ -62,12 +64,13 @@ def listing_by_id(data):
             ID.append(description)
             ID.append(location)
             ID.append(host_since)
-            
-    if len(ID)!=0:
-        tui.display_listing_by_id(ID)
-        tui.completed()
+    #This if statement to handle the error incase the user enters a wrong id.        
+    if len(ID)!=0:#If the list is not empty display it.
+        tui.display_listing_by_id(ID)#Call a function from the tui module to display the results as a dictionnary.
+        tui.completed()#Call the function completed from the tui module to indicate the end of the operation.
     else:
-        print('Invalid ID')
+        print('Invalid ID')#In case the id is wrong the list is empty prints invalid ID.
+        
 #This function ask the user to enter a location to get listings in a list based on the location entered by the user and call display_listing_for_specified_location function from tui module to display the results in a dictionnary.                              
 def listing_for_specified_location(data):
     tui.started('Listing host name, property type, price, minimum nights, and maximum nights of all Airbnb listing for a specified location')
@@ -112,7 +115,7 @@ def listing_by_property_type(data):
             property_type.append(bedroom)
             property_type.append(beds)
     if len(property_type)!=0:
-        tui.display_listing_by_property_type(property_type)   
+        tui.display_listing_by_property_type(property_type) 
         tui.completed()
     else:
         print('Invalid property type')             

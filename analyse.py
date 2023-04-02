@@ -39,10 +39,10 @@ def analyse_menu():
 # In[5]:
 
 
-#this function display amenities in a list   
+#This function displays amenities in a list   
 def popular_amenities(data):
     tui.started('display the most popular amenities:')
-    #Use mode function to get popular amenties which is the more repeated ones.
+    #The  mode function gives the popular amenties which is the more repeated ones.
     popular_amenities = data['amenities'].mode()
     print(f'the most popular amenities are:{popular_amenities.values}')
     tui.completed()
@@ -53,7 +53,7 @@ def popular_amenities(data):
 # In[9]:
 
 
-#this function display the average price of stay in each location.      
+#This function displays the average price of stay in each location.      
 def average_price_location(data):
     tui.started('display average price by location:')
     #Groupby function groups data by host location and get the average price of each group using the mean function 
@@ -67,7 +67,7 @@ def average_price_location(data):
 # In[11]:
 
 
-#This function display the average review scores rating for each location.      
+#This function displays the average review scores rating for each location.      
 def average_review_location(data):
     tui.started('display the average review scores rating:')
     #Groupby function groups data by host location and get the average review score of each group using the mean function.
@@ -79,7 +79,7 @@ def average_review_location(data):
 
 # In[16]:
 
-#This function Analyse the average price for host is superhost and host not superhost.
+#This function Analyses the average price for host is superhost and host not superhost.
 
 def average_price_host_is_superhost(data):
     tui.started('display average price for host is superhost:')

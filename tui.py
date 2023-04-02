@@ -24,11 +24,13 @@ def main_menu():
     {"[second]":<6}:Analyse data.\n
     {"[third]":<6}:visualise data.\n
     {"[exit]":<6}:Exit the programme.""")
+    #Input for the user to enter his selection.
     selection=input('your selection: ')
+    # strip and lower if the user unter capital letter and strip to remove the spaces. 
     return selection.strip().lower() 
                   
 
-#error function
+#error function to handle the errors.
 def error():  
         print("Invalid Selection!")
 
