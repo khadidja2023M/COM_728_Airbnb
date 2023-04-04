@@ -126,13 +126,15 @@ def prices_specified_years(data):
     x4=group_by_month_year2022.index.tolist()
     y4=group_by_month_year2022.tolist()
     #The plt.supbplots function displays multiple graphs.
-    figure, axes = plt.subplots(4,1, figsize=(17,7))#Set the number of rows and columns and the figure size.
+    fig, axes = plt.subplots(4,1, figsize=(17,7))#Set the number of rows and columns and the figure size.
+    #Ajuste the size.
+    fig.subplots_adjust(hspace = 0.75, wspace = 0.75)
     #Plot each graph.
     axes[0].plot(x1, y1)
     axes[1].plot(x2, y2)
     axes[2].plot(x3, y3)
     axes[3].plot(x4, y4)
-    figure.suptitle("Airbnb prices from 2019 - 2022")#Set one title for the four years.
+    fig.suptitle("Airbnb prices from 2019 - 2022")#Set one title for the four years.
     #Set a title for each graph.
     axes[0].set(title="Average price in year19", xlabel='months year19',ylabel='prices')
     axes[1].set(title="Average price in year20", xlabel='months year20',ylabel='prices')
