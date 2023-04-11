@@ -46,7 +46,7 @@ def number_bedrooms(data):
     bedrooms_group_list =bedrooms_group.index.tolist()
     #convert to list.
     bedrooms_list = bedrooms_group.tolist()
-    fig = plt.figure(figsize=(10, 6))
+    fig = plt.figure(figsize=(7, 4))
     plt.pie(bedrooms_list ,labels=bedrooms_group_list, autopct='%1.1f%%')# display percentage on Pie chart.
     plt.title("The proportion of number of bedrooms of Airbnb")
     plt.legend(loc="best", bbox_to_anchor=(1.2, 1))
@@ -69,7 +69,7 @@ def number_listing(data):
     y = listing_room_type.tolist()
     room_type_group=data.groupby('room_type').size()
     x = room_type_group.index.tolist()
-    fig = plt.figure()
+    fig = plt.figure(figsize=(8,5))
     plt.bar(x, y, label="Number of data")  # plotting the graph
     plt.xlabel("Room type") # create a label for x-axis
     plt.ylabel("The number of listing")  # create a label for y-axis
@@ -126,7 +126,7 @@ def prices_specified_years(data):
     x4=group_by_month_year2022.index.tolist()
     y4=group_by_month_year2022.tolist()
     #The plt.supbplots function displays multiple graphs.
-    fig, axes = plt.subplots(4,1, figsize=(17,7))#Set the number of rows and columns and the figure size.
+    fig, axes = plt.subplots(4,1, figsize=(20,15))#Set the number of rows and columns and the figure size.
     #Ajuste the size.
     fig.subplots_adjust(hspace = 0.75, wspace = 0.75)
     #Plot each graph.
