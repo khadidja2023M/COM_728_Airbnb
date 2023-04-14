@@ -15,7 +15,7 @@ def load_data_pandas(file_path):
     tui.started("Reading data from file path using pandas module.")
     data = pd.read_csv(file_path)
     return data
-    tui.completed()
+    
 
 
 
@@ -39,18 +39,26 @@ def analyse_menu():
 # In[5]:
 
 
-#This function displays amenities in a list   
+#This function displays amenities in a list  
 def popular_amenities(data):
-    tui.started('display the most popular amenities:')
-    #The  mode function gives the popular amenties which is the more repeated ones.
-    popular_amenities = data['amenities'].mode()
-    print(f'the most popular amenities are:{popular_amenities.values}')
+    tui.started("Display the top 10 most popular amenities")
+    data_amenities =data['amenities'] 
+    amenities={}
+    for amenity in data_amenities:
+        amenity=eval(amenity)
+        for x in amenity:
+            if x not in amenities:
+                amenities[x]=1
+            else:
+                amenities[x]+=1
+                sort_amenities = list(sorted(amenities.items(), key=lambda item:item[1],reverse=True))
+    print(f'The most popular amenities are:{sort_amenities[0:10]}')            
+    #return sort_amenities[0:10] 
     tui.completed()
+  
 
 
-
-
-# In[9]:
+ # In[9]:
 
 
 #This function displays the average price of stay in each location.      
