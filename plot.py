@@ -105,7 +105,7 @@ def relation_accommodates_price(data):
 def prices_specified_years(data):
     tui.started('Airbnb prices from 2019 - 2022 using subplots.')
     #Change the host since type from string to datetime.
-    data['host_since'] = pd.to_datetime(data['host_since'])
+    data['host_since'] = pd.to_datetime(data['host_since'], dayfirst=True)
     #Filter the years to just four years from 2019 to 2022 using query.
     filter_per_year_2019 = data.query("host_since >= '2019-01-01' and host_since < '2019-12-31'")
     filter_per_year_2020 = data.query("host_since >= '2020-01-01' and host_since < '2020-12-31'")

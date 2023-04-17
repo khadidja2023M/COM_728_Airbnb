@@ -39,7 +39,7 @@ def analyse_menu():
 # In[5]:
 
 
-#This function displays amenities in a list  
+#This function displays The most popular amenities.  
 def popular_amenities(data):
     tui.started("Display the top 10 most popular amenities")
     data_amenities =data['amenities'] 
@@ -53,7 +53,6 @@ def popular_amenities(data):
                 amenities[x]+=1
                 sort_amenities = list(sorted(amenities.items(), key=lambda item:item[1],reverse=True))
     print(f'The most popular amenities are:{sort_amenities[0:10]}')            
-    #return sort_amenities[0:10] 
     tui.completed()
   
 
