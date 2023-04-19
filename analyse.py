@@ -51,7 +51,7 @@ def popular_amenities(data):
                 amenities[x]=1
             else:
                 amenities[x]+=1
-                sort_amenities = list(sorted(amenities.items(), key=lambda item:item[1],reverse=True))
+    sort_amenities = list(sorted(amenities.items(), key=lambda item:item[1],reverse=True))
     print(f'The most popular amenities are:{sort_amenities[0:10]}')            
     tui.completed()
   

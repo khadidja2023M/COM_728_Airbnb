@@ -74,23 +74,36 @@ def listing_by_id(data):
 #This function ask the user to enter a location to get listings in a list based on the location entered by the user and call display_listing_for_specified_location function from tui module to display the results in a dictionnary.                              
 def listing_for_specified_location(data):
     tui.started('Listing host name, property type, price, minimum nights, and maximum nights of all Airbnb listing for a specified location')
-    location=[]
+    #Create a list for each listing.
+    host_name_list=[]
+    property_type_list=[]
+    price_list=[]
+    minimum_nights_list=[]
+    maximum_nights_list=[]
     input_location=input('enter your location:')
     
     for row in data:
-        if row[5]==input_location:
+        if row[5].lower()==input_location.lower():
             host_name=row[3] 
             property_type=row[13]
             price=row[20]
             minimum_nights=row[21]
             maximum_nights=row[22]
-            location.append(host_name)
-            location.append(property_type)
-            location.append(price)
-            location.append(minimum_nights)
-            location.append(maximum_nights)
-    if len(location)!=0:
-        tui.display_listing_for_specified_location(location)  
+            #Append each list with the information needed.
+            host_name_list.append(host_name)
+            property_type_list.append(property_type)
+            price_list.append(price)
+            minimum_nights_list.append(minimum_nights)
+            maximum_nights_list.append(maximum_nights)
+            
+    location=[host_name_list, property_type_list, price_list, minimum_nights_list, maximum_nights_list]
+    #If the list not empty.
+    if len(host_name_list)!=0:
+        location=[host_name_list, property_type_list, price_list, minimum_nights_list, maximum_nights_list]
+        for i in range(len(host_name_list)):
+            location=[host_name_list[i], property_type_list[i], price_list[i], minimum_nights_list[i],maximum_nights_list[i]]
+            tui.display_listing_for_specified_location(location) 
+            
         tui.completed()
     else:
         print('Invalid location')             
@@ -100,22 +113,30 @@ def listing_for_specified_location(data):
 #This function ask the user to enter property type to get listings in a list based on the property type entered by the user and call display_listing_by_proprty_type function from tui module to display the results in a dictionnary.                          
 def listing_by_property_type(data):
     tui.started('listing room type, accommodates, bathrooms, bedroom and beds by property type')
-    property_type=[]
+    room_type_list=[]
+    accommodates_list=[]
+    bathrooms_list=[]
+    bedroom_list=[]
+    beds_list=[]
+    
     type_of_property=input('enter the property type:')
     for row in data:
-        if row[13]==type_of_property:
+        if row[13].lower()==type_of_property.lower():
             room_type=row[14]
             accommodates=row[15]
             bathrooms=row[16]
             bedroom=row[17]
             beds=row[18]
-            property_type.append(room_type)
-            property_type.append(accommodates)
-            property_type.append(bathrooms)
-            property_type.append(bedroom)
-            property_type.append(beds)
-    if len(property_type)!=0:
-        tui.display_listing_by_property_type(property_type) 
+            room_type_list.append(room_type)
+            accommodates_list.append(accommodates)
+            bathrooms_list.append(bathrooms)
+            bedroom_list.append(bedroom)
+            beds_list.append(beds)
+    if len(room_type_list)!=0:
+        property_type=[room_type_list,accommodates_list,bathrooms_list,bedroom_list,beds_list]
+        for i in range(len(room_type_list)):
+            property_type=[room_type_list[i], accommodates_list[i], bathrooms_list[i], bedroom_list[i], beds_list[i]]
+            tui.display_listing_by_property_type(property_type) 
         tui.completed()
     else:
         print('Invalid property type')             
@@ -125,20 +146,27 @@ def listing_by_property_type(data):
 #This function ask the user to enter location to get listings in a list based on the location entered by the user and call display_listing_by_location function from tui module to display the results in a dictionnary.             
 def listing_by_location(data):
     tui.started('listing review scores of cleanliness, checkin, communication and rating : ')
-    Location=[]
+    review_scores_cleanliness_list=[]
+    review_scores_checkin_list=[]
+    review_scores_communication_list=[]
+    review_scores_rating_list=[]
     input_location=input('enter your location:') 
     for row in data:
-        if row[5]==input_location:
+        if row[5].lower()==input_location.lower():
             review_scores_cleanliness=row[29]
             review_scores_checkin=row[30]
             review_scores_communication=row[31]
             review_scores_rating=row[27]
-            Location.append(review_scores_cleanliness)
-            Location.append(review_scores_checkin)
-            Location.append(review_scores_communication)
-            Location.append(review_scores_rating)
-    if len(Location)!=0:
-        tui.display_listing_by_location(Location)
+            review_scores_cleanliness_list.append(review_scores_cleanliness)
+            review_scores_checkin_list.append(review_scores_checkin)
+            review_scores_communication_list.append(review_scores_communication)
+            review_scores_rating_list.append(review_scores_rating)
+    if len(review_scores_cleanliness_list)!=0:
+        Location=[review_scores_cleanliness_list,  review_scores_checkin_list, review_scores_communication_list, review_scores_rating_list]
+        for i in range(len(review_scores_cleanliness_list)):
+            Location=[review_scores_cleanliness_list[i],  review_scores_checkin_list[i], review_scores_communication_list[i], review_scores_rating_list[i]]
+            tui.display_listing_by_location(Location)
+            
         tui.completed()
     else:
         print('Invalid location')        
