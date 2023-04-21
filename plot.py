@@ -5,18 +5,11 @@
 
 
 #plot module 
-
-
 import tui 
 import matplotlib.pyplot as plt 
 import pandas as pd
 
-
-
-
-
 # In[12]:
-
 
 #This function displays the menu of visualisation selection.
 def plot_menu():
@@ -31,11 +24,7 @@ def plot_menu():
     menu_selection=input('your selection: ')
     return menu_selection.strip().lower()     
 
-
-
-
 # In[13]:
-
 
 #This function displays the proportion of number of bedrooms of Airbnb listing using pie chart. 
 def number_bedrooms(data):
@@ -52,13 +41,8 @@ def number_bedrooms(data):
     plt.legend(loc="best", bbox_to_anchor=(1.2, 1))
     plt.show()
     tui.completed()
-
-
-
-  
-
-   # In[14]:
-
+    
+#In[14]:
 
 #This function display the number of listings for each room type using bar chart
 def number_listing(data):
@@ -78,11 +62,7 @@ def number_listing(data):
     plt.show()  # show the graph
     tui.completed()
 
-
-
-
 # In[10]:
-
 
 #This function displays the relationship between accommodates and price using scatter plot.
 def relation_accommodates_price(data):
@@ -95,13 +75,10 @@ def relation_accommodates_price(data):
     plt.title('Accommodates vs Price')#The title.
     plt.show()#Show function to show the graph.
     tui.completed()
-
-
+    
 # In[ ]:
 
-
 #This function display Airbnb prices from 2019 - 2022 with line chart using subplots (one year per plot).
-
 def prices_specified_years(data):
     tui.started('Airbnb prices from 2019 - 2022 using subplots.')
     #Change the host since type from string to datetime.
@@ -142,12 +119,8 @@ def prices_specified_years(data):
     axes[3].set(title="Average price in year22", xlabel='months year22',ylabel='prices')
     plt.show()
     tui.completed()
-   
-
-   
-
-
-      #The function displays the relation between host response and the number of reviews.
+    
+#The function displays the relation between host response and the number of reviews.
 def relation_response_reviews(data):
     tui.started('The relation between host response time and the number of reviews.')
     fig = plt.figure(figsize=(15,8)) #Create figure object and set up the size of figure

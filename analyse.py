@@ -13,14 +13,11 @@ import pandas as pd
 def load_data_pandas(file_path):
     #call started function from tui module to indicate that the operation is started. 
     tui.started("Reading data from file path using pandas module.")
+    print(' ')
     data = pd.read_csv(file_path)
     return data
     
-
-
-
 # In[ ]:
-
 
 #This function display the menu of analyse selection.
 def analyse_menu():
@@ -30,73 +27,72 @@ def analyse_menu():
     {"[3]":<6}:The average review scores rating for each location.\n
     {"[4]":<6}:The average price for host is superhost and host not superhost.\n 
     {"[exit]":<6}:Exit the programme.""")
+    print(' ')
     menu_selection = input('your selection: ')
     return menu_selection.strip().lower() 
 
-
-
-
 # In[5]:
-
 
 #This function displays The most popular amenities.  
 def popular_amenities(data):
     tui.started("Display the top 10 most popular amenities")
-    data_amenities =data['amenities'] 
-    amenities={}
+    print(' ')
+    data_amenities = data['amenities']
+    #Create an empty dictionnary.
+    amenities = {}
+    #For each list in data amenties.
     for amenity in data_amenities:
-        amenity=eval(amenity)
+        #The list amenity is a sring, eval function separats the elememts.
+        amenity = eval(amenity)
+        #For each element in the list.
         for x in amenity:
+            #If the element dosent exist in the list his count is 1.
             if x not in amenities:
                 amenities[x]=1
             else:
+                #If the element existe in the list keep adding to get the count of the word.
                 amenities[x]+=1
-    sort_amenities = list(sorted(amenities.items(), key=lambda item:item[1],reverse=True))
-    print(f'The most popular amenities are:{sort_amenities[0:10]}')            
+    #Sort the dictionnary and put it in a list to use indexing to get the first 10 amenities.           
+    sort_amenities = list(sorted(amenities.items(), key = lambda item:item[1], reverse = True))
+    print(f'\033[1;30mThe most popular amenities are\033[0m:{sort_amenities[0:10]}')            
     tui.completed()
-  
-
-
- # In[9]:
-
+    
+# In[9]:
 
 #This function displays the average price of stay in each location.      
 def average_price_location(data):
-    tui.started('display average price by location:')
+    tui.started('Display average price by location:')
+    print(' ')
     #Groupby function groups data by host location and get the average price of each group using the mean function 
     average_stay_location = data.groupby(['host_location'])['price'].mean()
-    print(f'The average stay in each location:\n{average_stay_location}')         
+    print(f'\033[1;30mThe average stay in each location\033[0m:\n{average_stay_location}')         
     tui.completed() 
 
-
-
-
-# In[11]:
-
+#In[11]:
 
 #This function displays the average review scores rating for each location.      
 def average_review_location(data):
-    tui.started('display the average review scores rating:')
+    tui.started('Display the average review scores rating:')
+    print(' ')
     #Groupby function groups data by host location and get the average review score of each group using the mean function.
     average_review_location = data.groupby(['host_location'])['review_scores_location'].mean()
-    print(f'The average review rate score for each location is:\n{average_review_location}')
+    print(f'\033[1;30mThe average review rate score for each location is\033[0m:\n{average_review_location}')
     tui.completed()
-
-
 
 # In[16]:
 
 #This function Analyses the average price for host is superhost and host not superhost.
-
 def average_price_host_is_superhost(data):
-    tui.started('display average price for host is superhost:')
+    tui.started('Display average price for host is superhost:')
+    print(' ')
     #Groupby function groups data by host is superhost and get the average price of each group using the mean function.
     average_price = data.groupby(['host_is_superhost'])['price'].mean()
-    #Get the count of each group to compart the average price of the 2 groupes.
-    not_super_count=data.loc[data.host_is_superhost ==False,['host_is_superhost']].count()
-    superhost_count=data.loc[data.host_is_superhost ==True,['host_is_superhost']].count()
-    print(f"The number of not suprhost is:{not_super_count.values} with the average price of:{average_price.values[0]:.2f}") 
-    print(f"The number of suprhost is:{superhost_count.values} with the average price of:{average_price.values[1]:.2f}")
+    #Get the count of each group to compart the average price of the two groupes.
+    not_super_count = data.loc[data.host_is_superhost == False,['host_is_superhost']].count()
+    superhost_count = data.loc[data.host_is_superhost == True,['host_is_superhost']].count()
+    #Display two numbers after the decimal for the price.
+    print(f"\033[1;30mThe number of not suprhost is\033[0m:{not_super_count.values} with the average price of:{average_price.values[0]:.2f}")
+    print(f"\033[1;30mThe number of suprhost is\033[0m:{superhost_count.values} with the average price of:{average_price.values[1]:.2f}")
     tui.completed()   
 
 
