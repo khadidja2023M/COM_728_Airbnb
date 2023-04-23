@@ -8,21 +8,21 @@
 import tui 
 import matplotlib.pyplot as plt 
 import pandas as pd
-
+import random 
 # In[12]:
 
 #This function displays the menu of visualisation selection.
 def plot_menu():
     print(f"""select which menu whoud you like:
-    {"[1]":<6}:The proportion of number of bedrooms of Airbnb listing using pie chart.\n 
-    {"[2]":<6}:The number of listings for each room type using bar chart.\n  
-    {"[3]":<6}:The relationship between accommodates and price using scatter plot rating.\n
-    {"[4]":<6}:Subplots of airbnb prices from 2019 -2022.\n  
-    {"[5]":<6}:The relation between host response time and number of reviews.\n
-    {"[exit]":<6}:Exit the programme.                
-    """)
+    {"[1]":<6} : The proportion of number of bedrooms of Airbnb listing using pie chart.\n 
+    {"[2]":<6} : The number of listings for each room type using bar chart.\n  
+    {"[3]":<6} : The relationship between accommodates and price using scatter plot rating.\n
+    {"[4]":<6} : Subplots of airbnb prices from 2019 -2022.\n  
+    {"[5]":<6} : The relation between host response time and number of reviews.\n
+    {"[6]":<6} : Aditionnal information "display price for random property type"\n.
+    {"[7]":<6} : Go back to main menu.""")                
     menu_selection=input('your selection: ')
-    return menu_selection.strip().lower()     
+    return menu_selection.strip()     
 
 # In[13]:
 
@@ -133,7 +133,26 @@ def relation_response_reviews(data):
     tui.completed()            
 # In[ ]:
 
+#Display the average price for random property type using bar chart.
+def random_property_type_price(data):
+    tui.started('Random property_type average price')
+    property_type = data['property_type']
+    #Choice random properties using random.
+    random_property_type = random.choices(property_type, k=1)
+    #Use set to avoid duplications.
+    unique_prices = set()
+    for property_type in random_property_type:
+        properties= data[data['property_type'] == property_type]
+        #Get the mean for each property type.
+        average_price =properties['price'].mean()
+        #Put the average prices in a set.
+        unique_prices.add(average_price)
+    #Display the results using bar chart.
+    fig = plt.figure(figsize=(7, 4))
+    plt.bar(random_property_type, average_price)
+    plt.title("Average price of random properties")
+    plt.show()
+    tui.completed()
 
-#
 
 

@@ -17,7 +17,7 @@ def load_data_csv(file_path):
     print(' ')
     #empty list to store data.
     data = []
-    with open(file_path, encoding = 'utf-8') as csv_file:
+    with open(file_path, encoding='utf-8') as csv_file:
         csv_reader = csv.reader(csv_file)
         next(csv_reader)#skip the headings.
         data = [row for row in csv_reader]#list comprehension to append the list data with each row.
@@ -25,21 +25,15 @@ def load_data_csv(file_path):
         
 #create menu function that will allow the user to retreive data 
 def retrieve_menu():
-    
-    print(f"""Select which menu whoud you like:
-    
+    print(f"""Select which menu whoud you like:\n
     {"[1]":<6}:List name of listing, host name, description, host location, host since by host id.\n 
-    
     {"[2]":<6}:List host name, property type, price, minimum_nights and maximum_nights by location.\n
-    
     {"[3]":<6}:List room type, accommodates, bathrooms, bedroom and beds for a specified property type.\n
-    
     {"[4]":<6}:List review scores of cleanliness, checkin, communication and rating by location.\n                 
-    
-    {"[exit]":<6}:Exit the programme.""") 
+    {"[5]":<6}:Go back to the main menu.""") 
     print(' ')
     menu_selection = input('Your selection : ')
-    return menu_selection.strip().lower() 
+    return menu_selection.strip() 
                          
 #This function ask the user to enter the id to get listings in a dictionnary based on the id entered by the user and call display_listing_by_id function from tui module to display the results in a dictionnary.                  
 def listing_by_id(data):
@@ -53,7 +47,7 @@ def listing_by_id(data):
     print(' ')
     for row in data:
         #If the input_id equal to the id  append the list ID with host name, description, location and host since.
-        if row[0] == input_id:
+        if  row[0] == input_id:
             host_name = row[3]
             description = row[2]
             location = row[5]
@@ -71,7 +65,8 @@ def listing_by_id(data):
         print(' ')
         red_satrt ='\033[31m'
         red_end ='\033[0m'
-        print(f"{red_satrt}Invalid ID!, please try again{red_end}")#In case the id is wrong the list is empty prints invalid ID.
+        #In case the id is wrong the list is empty prints invalid ID.
+        print(f"{red_satrt}Invalid ID!, please try again{red_end}")
         print(' ')
         
 #This function ask the user to enter a location to get listings in a list based on the location entered by the user and call display_listing_for_specified_location function from tui module to display the results in a dictionnary.                              
@@ -89,7 +84,7 @@ def listing_for_specified_location(data):
     print(' ')
     #If user input equal to one of the locations.
     for row in data:
-        if row[5].lower() == input_location.lower():
+        if  row[5].lower() == input_location.lower():
             host_name = row[3] 
             property_type = row[13]
             price = row[20]
@@ -100,8 +95,7 @@ def listing_for_specified_location(data):
             property_type_list.append(property_type)
             price_list.append(price)
             minimum_nights_list.append(minimum_nights)
-            maximum_nights_list.append(maximum_nights)
-            
+            maximum_nights_list.append(maximum_nights)        
     location=[host_name_list, property_type_list, price_list, minimum_nights_list, maximum_nights_list]
     #If the list not empty.
     if len(host_name_list) != 0:
@@ -129,11 +123,10 @@ def listing_by_property_type(data):
     bathrooms_list = list()
     bedroom_list = list()
     beds_list = list()
-    
     type_of_property = input('Enter the property type : ')
     print(' ')
     for row in data:
-        if row[13].lower() == type_of_property.lower():
+        if  row[13].lower() == type_of_property.lower():
             room_type = row[14]
             accommodates = row[15]
             bathrooms = row[16]
@@ -168,8 +161,8 @@ def listing_by_location(data):
     review_scores_rating_list = []
     input_location = input('Enter the location : ')
     print(' ')
-    for row in data:
-        if row[5].lower() == input_location.lower():
+    for row in data:    
+        if  row[5].lower() == input_location.lower():
             review_scores_cleanliness = row[29]
             review_scores_checkin = row[30]
             review_scores_communication = row[31]
@@ -191,5 +184,5 @@ def listing_by_location(data):
         red_end ='\033[0m'
         print(f"{red_satrt}Invalid location!, please try again{red_end}")
         print(' ')
-    
+
 

@@ -5,7 +5,12 @@
 
 
 #tui module
-
+#Welcome to Airbnb function.
+def welcome():
+    print("                               \033[1;32mWelcome to Airbnb\033[0m            ")
+    dashes = ('\033[1;34m#\033[0m')*85
+    print(dashes)
+    
 #Create a starting function that will indicate the start of the programme.
 def started(msg = ""): 
     #Display a line of dashes for separation.
@@ -23,10 +28,10 @@ def completed():
 #Create a main menu to give the user a chance to choose what he wants to do.    
 def main_menu():
     print(f"""Please select which menu would you like:\n
-    {"[first]":<6} : Retrieve data.\n   
+    {"[first]":<6}  : Retrieve data.\n   
     {"[second]":<6} : Analyse data.\n
-    {"[third]":<6} : visualise data.\n
-    {"[exit]":<6} : Exit the programme.""")
+    {"[third]":<6}  : visualise data.\n
+    {"[exit]":<6}   : Exit the programme.""")
     print('  ')
     #Input for the user to enter his selection.
     selection = input('Your selection: ')
@@ -35,11 +40,11 @@ def main_menu():
                   
 #error function to handle the errors.
 def error():
-        #The code \033[31m and \033[0m are used to change the colour of the print function to red.
-        red_satrt ='\033[31m'
-        red_end ='\033[0m'
-        print(f"{red_satrt}Invalid Selection!{red_end}")
-        print(' ')
+    #The code \033[31m and \033[0m are used to change the colour of the print function to red.
+    red_satrt ='\033[31m'
+    red_end ='\033[0m'
+    print(f"{red_satrt}Invalid Selection!Please try again{red_end}")
+    print(' ')
 
 #this function display the results of the function listing by id in the retrieve module as a dictionnary.       
 def display_listing_by_id(ID):

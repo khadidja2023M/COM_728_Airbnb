@@ -14,7 +14,12 @@ def load_data_pandas(file_path):
     #call started function from tui module to indicate that the operation is started. 
     tui.started("Reading data from file path using pandas module.")
     print(' ')
-    data = pd.read_csv(file_path)
+    #This code will set the no truncate for Pandas.
+    pd.set_option("display.max_columns", None)#show all cols.
+    pd.set_option("display.max_rows", None)#show full rows 
+    pd.set_option("display.max_colwidth", None)#show full width of showing cols.
+    pd.set_option("expand_frame_repr", False)#print cols side by side as it's supposed to be
+    data = pd.read_csv(file_path, parse_dates=[0], dayfirst=True, infer_datetime_format=True)
     return data
     
 # In[ ]:
@@ -22,14 +27,14 @@ def load_data_pandas(file_path):
 #This function display the menu of analyse selection.
 def analyse_menu():
     print(f"""select which menu would you like:
-    {"[1]":<6}:The most popular amenities that Airbnb guests are looking for.\n 
-    {"[2]":<6}:The average price of stay in each location.\n
-    {"[3]":<6}:The average review scores rating for each location.\n
-    {"[4]":<6}:The average price for host is superhost and host not superhost.\n 
-    {"[exit]":<6}:Exit the programme.""")
+    {"[1]":<6} : The most popular amenities that Airbnb guests are looking for.\n 
+    {"[2]":<6} : The average price of stay in each location.\n
+    {"[3]":<6} : The average review scores rating for each location.\n
+    {"[4]":<6} : The average price for host is superhost and host not superhost.\n 
+    {"[5]":<6} : Go back to main menu.""")
     print(' ')
     menu_selection = input('your selection: ')
-    return menu_selection.strip().lower() 
+    return menu_selection.strip() 
 
 # In[5]:
 
@@ -64,8 +69,14 @@ def average_price_location(data):
     tui.started('Display average price by location:')
     print(' ')
     #Groupby function groups data by host location and get the average price of each group using the mean function 
-    average_stay_location = data.groupby(['host_location'])['price'].mean()
-    print(f'\033[1;30mThe average stay in each location\033[0m:\n{average_stay_location}')         
+    average_stay_location = data.groupby('host_location', as_index=False)['price'].mean()
+    #Add a column of mean and set the data to columns.
+    average_stay_location.columns = ['host_location','mean_price']
+    average_stay_location['mean_price'] = average_stay_location['mean_price'].apply(lambda x:round(x,3))
+    #Use string format to write in bold.
+    print(f'\033[1;30mThe average stay in each location\033[0m:\n')
+    #Use display function instead of print function to show the result without traucate. 
+    display(average_stay_location)
     tui.completed() 
 
 #In[11]:
@@ -75,8 +86,11 @@ def average_review_location(data):
     tui.started('Display the average review scores rating:')
     print(' ')
     #Groupby function groups data by host location and get the average review score of each group using the mean function.
-    average_review_location = data.groupby(['host_location'])['review_scores_location'].mean()
-    print(f'\033[1;30mThe average review rate score for each location is\033[0m:\n{average_review_location}')
+    average_review_location = data.groupby('host_location', as_index=False )['review_scores_location'].mean()
+    average_review_location.columns = ['host_location','mean_review']
+    average_review_location['mean_review'] = average_review_location['mean_review'].apply(lambda x:round(x,3))
+    print(f'\033[1;30mThe average review rate score for each location is\033[0m:\n')
+    display(average_review_location)
     tui.completed()
 
 # In[16]:
